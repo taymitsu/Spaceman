@@ -23,7 +23,7 @@ def is_word_guessed(secret_word, letters_guessed):
 #used to get string correctlyGuessed correct letters guessed, underscores for not yet guessed 
 def get_guessed_word(secret_word, letters_guessed):
     correctlyGuessed = ' '
-    
+
     for letter in secret_word:
         if letter in letters_guessed:
             correctlyGuessed += letter
@@ -31,11 +31,13 @@ def get_guessed_word(secret_word, letters_guessed):
     return correctlyGuessed
 
 #stretch, letter already entered, do not deduct life. 
-def check(secret_word, guess):
-    for letter in secret_word:
-        if letter == guess:
-            return True
-    return False 
+#def check(secret_word, guess):
+    #for letter in secret_word:
+        #if letter == guess:
+            #print(f'ALERT: {guess} has already been attempted. ')
+            #print('A life has not been removed. Please proceed cautiously ')
+            #return True
+    #return False 
 
 #check if the guessed letter is in the secret word 
 def is_guess_in_word(guess, secret_word):
@@ -43,15 +45,16 @@ def is_guess_in_word(guess, secret_word):
     if guess in secret_word: 
         print(f'Correct!')
         return True
-    else:
+    else: 
         print(f'{guess} is incorrect. ')
         return False 
 
 #main block of code that processes game (huge while loop with if)
 def spaceman(secret_word):
     print("Welcome, Fellow Earthling! Let's Play Spaceman! ")
-
+    print("\n")
     print("You will start with 7 lives. Keep them by guessing the letters in the secret word correctly. Lose one life for each letter guessed incorrectly. ")
+    print("\n")
     letters_guessed = []
     lives = 7
     running = True
@@ -62,16 +65,15 @@ def spaceman(secret_word):
             print('WINNER, WINNER, CHICKEN DINNER!!!')
             running = False 
         if is_guess_in_word(guess, secret_word) is False:
+            lives -= 1
             print(get_guessed_word(secret_word, letters_guessed))
             print(f'You have {lives} lives left! ')
             print(f'List of attempted letters: {letters_guessed} ')
-            if check(letters_guessed, guess):
-                print(f'ALERT: {guess} has already been attempted.')
-                print('A life has not been removed. Please proceed cautiously')
-                lives += 1
-            lives -= 1
+                #if check(letters_guessed, guess):
+                    #lives != 1
+                #lives -= 1
             if lives == 0:
-                print(f'So close, but so far.. GAME OVER! The correct word was {secret_word.upper()}')
+                print(f'So close, but so far... GAME OVER! The correct word was {secret_word.upper()}')
                 #read secret word as UPPER for easier reading
                 running = False
                 break
