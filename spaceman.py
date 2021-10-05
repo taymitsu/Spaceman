@@ -10,15 +10,12 @@ def load_word():
     secret_word = random.choice(words_list)
     return secret_word
 
-#checks if all the letters of the secret word have been guessed 
+#checks if all the letters of the secret word have been guessed, multiples
 def is_word_guessed(secret_word, letters_guessed):
-    correctlyGuessed = ' '
-
     for letter in secret_word:
         if letter not in letters_guessed:
             return False
     return True 
-
 
 #used to get string correctlyGuessed correct letters guessed, underscores for not yet guessed 
 def get_guessed_word(secret_word, letters_guessed):
@@ -59,27 +56,29 @@ def spaceman(secret_word):
     print("\n")
     running = True
     while running: 
+        print(secret_word)
         guess = input('Enter a letter > ')
         if is_guess_in_word(guess, secret_word):
-            print(f'Correct! You have {lives} lives left!')
+            print(f'Correct! ')
             letters_guessed.append(guess)
+            print(f'List of attempted letters: {letters_guessed} ')
             #print(letters_guessed)
         else: 
             lives -= 1
             print(f'{guess} is incorrect. You have {lives} remaining ')
+            letters_guessed.append(guess)
+            print(f'List of attempted letters: {letters_guessed} ')
             
         print(get_guessed_word(secret_word, letters_guessed))
-        print(f'List of attempted letters: {letters_guessed} ')
+        #print(f'List of attempted letters: {letters_guessed} ')
 
-        if check(letters_guessed, guess):
+        #if check(letters_guessed, guess):
             #lives != 1
             #print(f'ALERT: {guess} has already been attempted. Please proceed cautiously ')
         #else: 
 
-
         if is_word_guessed(secret_word, letters_guessed):
             print('WINNER, WINNER, CHICKEN DINNER!!!')
-            running = False 
 
         if lives == 0:
             print(f'So close, but so far... GAME OVER! The correct word was {secret_word.upper()}')
@@ -87,7 +86,13 @@ def spaceman(secret_word):
             running = False
             break
         #letters_guessed.append(guess)
-        #print()
+        print(' ')
+        #play again loop
+        #play_again = print("Would you like to play again? (yes/no) > ")
+        #if play_again == 'yes':
+            #print("Let's play again!")
+        #else: 
+            #print('Thanks for playing!')
 
 #Start game 
 secret_word = load_word()
