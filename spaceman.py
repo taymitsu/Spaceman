@@ -17,7 +17,7 @@ def is_word_guessed(secret_word, letters_guessed):
             return False
     return True 
 
-#used to get string correctlyGuessed correct letters guessed, underscores for not yet guessed 
+#get string correctlyGuessed letters, underscores for not yet guessed 
 def get_guessed_word(secret_word, letters_guessed):
     correctlyGuessed = ' '
 
@@ -34,7 +34,7 @@ def get_guessed_word(secret_word, letters_guessed):
             #return True
     #return False 
 
-#check if the guessed letter is in the secret word 
+#check if the guessed letter is in the secret word, print correpsonding statement, correct/incorrect
 def is_guess_in_word(guess, secret_word):
     #return guess in secret_word
     if guess in secret_word: 
@@ -44,7 +44,8 @@ def is_guess_in_word(guess, secret_word):
         #print(f'{guess} is incorrect. ')
         return False 
 
-#main block of code that processes game (huge while loop with if)
+#main, processes game (huge while loop with if)
+#specify lives and load empty string
 def spaceman(secret_word):
     letters_guessed = []
     lives = 7
